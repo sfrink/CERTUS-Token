@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="545.0000999999975" prefWidth="563.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="application.MainController">
+  <!-- TODO Add Nodes -->
+  <children>
+    <RadioButton fx:id="rdnUseOwnPVK" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#rdnUseOwnPVKOnClick" selected="true" text="Use my private key:">
+      <toggleGroup>
+        <ToggleGroup fx:id="main" />
+      </toggleGroup>
+    </RadioButton>
+    <TextField fx:id="txtOwnPVKPath" layoutX="14.0" layoutY="50.0" prefWidth="535.0" />
+    <RadioButton fx:id="rdnUseCertusPVK" layoutX="14.0" layoutY="87.0" mnemonicParsing="false" onAction="#rdnCertusPVKOnClick" text="User Certus encrypted private key:" toggleGroup="$main" />
+    <Label fx:id="lblOwnPVKPath" layoutX="14.0" layoutY="34.0" text="Private key path:" />
+    <Label fx:id="lblCertusPVKPath" layoutX="14.0" layoutY="107.0" text="Certus encrypted private key path:" />
+    <Label fx:id="lblPass" layoutX="14.0" layoutY="152.0" text="Decryption password:" />
+    <TextField fx:id="txtCertusPVKPath" layoutX="14.0" layoutY="123.0" prefWidth="535.0" text="" />
+    <PasswordField fx:id="txtPass" layoutX="14.0" layoutY="168.0" prefWidth="535.0" text="0123456789abcdef" />
+    <Label layoutX="14.0" layoutY="248.0" text="Your encrypted vote:" />
+    <Label layoutX="14.0" layoutY="298.0" text="Signature:" />
+    <TextField fx:id="txtVote" layoutX="14.0" layoutY="264.0" prefWidth="535.0" text="" />
+    <TextField id="txtSignaturePath" fx:id="txtSignature" editable="false" layoutX="14.0" layoutY="314.0" prefWidth="535.0" text="" />
+    <Button fx:id="btnGenerate" defaultButton="true" layoutX="426.0" layoutY="346.0" mnemonicParsing="false" onAction="#btnGenerateOnClick" text="Generate Signature" />
+    <Label fx:id="lblError" alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="349.0" prefWidth="403.0" text="Error" textAlignment="CENTER" textFill="RED" visible="true" wrapText="true" />
+    <TitledPane animated="false" collapsible="false" expanded="true" layoutX="14.0" layoutY="378.0" minWidth="137.0" prefHeight="153.0" prefWidth="533.0" text="Need your own key pair?">
+      <content>
+        <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="153.0" prefWidth="529.0">
+          <children>
+            <CheckBox fx:id="ckxGenerate" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#ckxGenerateOnClick" text="Yes please." />
+            <Label id="lblNewPubPath" fx:id="lblNewKeyPairPath" layoutX="14.0" layoutY="48.0" text="New key pair directory path:" />
+            <TextField id="txtNewPubPath" fx:id="txtNewKeyPairPath" layoutX="14.0" layoutY="64.0" prefWidth="503.0" />
+            <Button fx:id="btnGenerateKeys" layoutX="401.0" layoutY="96.0" mnemonicParsing="false" onAction="#btnGenerateKeysOnClick" text="Generate key pair" />
+          </children>
+        </AnchorPane>
+      </content>
+    </TitledPane>
+  </children>
+</AnchorPane>
