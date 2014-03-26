@@ -13,7 +13,7 @@ import java.security.PublicKey;
 
 public class RSAKeys {
 
-	public void generateKeys(String pubKeyPath, String pvkKeypath){
+	public void generateKeys(String pubKeyPath, String pvkKeyPath){
 		
 		try {			
 			KeyPairGenerator gen = KeyPairGenerator.getInstance("RSA");
@@ -23,7 +23,7 @@ public class RSAKeys {
 			PrivateKey pvkKey = keyPair.getPrivate();
 			
 			writeFile(pubKeyPath, pubKey.getEncoded());
-			writeFile(pvkKeypath, pvkKey.getEncoded());
+			writeFile(pvkKeyPath, pvkKey.getEncoded());
 			
 			System.out.println("RSA key pair are generated.");
 			
