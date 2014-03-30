@@ -7,6 +7,7 @@ import java.io.IOException;
 import org.junit.Test;
 
 import application.BinFile;
+import application.DataEncryptor;
 import application.RSAKeys;
 import application.RSASign;
 
@@ -21,18 +22,26 @@ public class RSATest {
 		
 		String pubKeyPath = "f:\\temp\\pubKey";
 		String pvkKeyPath = "f:\\temp\\pvkKey";
+		String password = "my password";
 		
 		BinFile pvkKeyFile = new BinFile(pvkKeyPath);
 		
-		rsaKeysTester.generateKeys(pubKeyPath, pvkKeyPath);
+		rsaKeysTester.generateKeys(pubKeyPath, pvkKeyPath, password);
 		
 		String textToBeSigned = "This tutorial explains unit testing with JUnit 4.x.";
 		byte[] bytesToBeSigned = textToBeSigned.getBytes();
 		
 		//read the private key:
 		byte [] encodedPVK = null;
+		byte [] encryptedPVK = null;
 		try {
-			encodedPVK = pvkKeyFile.readFile();
+			encryptedPVK = pvkKeyFile.readFile();
+			try {
+				encodedPVK = DataEncryptor.AESDecrypt(encryptedPVK, password);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
