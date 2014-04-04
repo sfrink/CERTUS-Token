@@ -3,9 +3,6 @@
  */
 package application;
 
-import java.security.NoSuchAlgorithmException;
-import java.security.spec.InvalidKeySpecException;
-
 import javax.crypto.spec.PBEKeySpec;
 import javax.crypto.spec.SecretKeySpec;
 import javax.crypto.spec.IvParameterSpec;
@@ -21,8 +18,8 @@ public class DataEncryptor {
 	
 	public static byte[] AESEncrypt(byte[] plainText, String password) throws Exception {
 		Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5PADDING");
-		String encryptionKey = getKey(password, keyIterations);
-		String IV = getKey(password, ivItereations);
+		String encryptionKey = generateKey(password, keyIterations);
+		String IV = generateKey(password, ivItereations);
 		SecretKeySpec key = new SecretKeySpec(encryptionKey.getBytes(), "AES");
 		cipher.init(Cipher.ENCRYPT_MODE, key, new IvParameterSpec(IV.getBytes()));
 		return cipher.doFinal(plainText);
@@ -30,14 +27,14 @@ public class DataEncryptor {
 
 	public static byte[] AESDecrypt(byte[] cipherText, String password) throws Exception {
 		Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5PADDING");
-		String encryptionKey = getKey(password, keyIterations);
-		String IV = getKey(password, ivItereations);
+		String encryptionKey = generateKey(password, keyIterations);
+		String IV = generateKey(password, ivItereations);
 		SecretKeySpec key = new SecretKeySpec(encryptionKey.getBytes(), "AES");
 		cipher.init(Cipher.DECRYPT_MODE, key, new IvParameterSpec(IV.getBytes()));
 		return cipher.doFinal(cipherText);
 	}
 
-	public static String getKey (String password, int iterations) throws Exception{
+	public static String generateKey (String password, int iterations) throws Exception{
 
 		int derivedKeyLength = 64;
 	    SecretKey cipherKey = null;

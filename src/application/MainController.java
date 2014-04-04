@@ -90,6 +90,8 @@ public class MainController implements Initializable {
 			return;
 		}
 		
+		txtSignature.setText("");
+		
 		//load the private key:
 		byte[] encodedPVK = null;
 		
