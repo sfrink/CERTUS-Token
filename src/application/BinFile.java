@@ -11,15 +11,10 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 public class BinFile {
-	private static String path = "";
-	private static File f;
+	private File f;
 
 	public BinFile(String fPath){
 		f = new File(fPath);
-	}
-	
-	public String getPath() {
-		return path;
 	}
 
 	public boolean isFound(){
@@ -38,7 +33,7 @@ public class BinFile {
 		return isDirectory;
 	}
 	
-	public static byte[] readFile () throws IOException{
+	public byte[] readFile () throws IOException{
 		byte [] fileByte = new byte[(int)f.length()];
 		DataInputStream fileST = new DataInputStream((new FileInputStream(f)));
 		fileST.readFully(fileByte);

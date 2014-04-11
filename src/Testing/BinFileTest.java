@@ -30,15 +30,17 @@ public class BinFileTest {
 		byte[] readBinContent = null;
 		try {
 			readBinContent = tester.readFile();
+			String readContent = new String(readBinContent);
+			assertNotNull(readContent);
+			assertEquals(readContent, writeContent);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		String readContent = new String(readBinContent);
 		
-		assertNotNull(readContent);
-		assertEquals(readContent, writeContent);
+		
+		
 		
 	}
 
